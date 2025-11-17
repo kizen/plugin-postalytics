@@ -1,0 +1,13 @@
+{
+  "name": "Postalytics",
+  "api_name": "postalytics",
+  "version": "0.0.1",
+  "description": "Postalytics app for Kizen",
+  "external_link": "",
+  "engine": "1.0.0",
+  "entry": "src/",
+  "release_notes_directory": "releaseNotes/",
+  "config_template": {},
+  "base_config": {},
+  "published": false
+}
