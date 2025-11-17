@@ -1,4 +1,8 @@
 const contact = await this.currentEntity();
+business = await this.currentBusiness();
+
+console.log("contact", contact);
+console.log("business", business);
 console.log("args", this.args);
 
 // Map of required fields: kizen field -> postalytics field
