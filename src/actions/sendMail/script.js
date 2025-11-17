@@ -1,5 +1,7 @@
+this.preserve = true;
+
 const contact = await this.currentEntity();
-business = await this.currentBusiness;
+business = this.currentBusiness;
 
 console.log("contact", contact);
 console.log("business", business);
