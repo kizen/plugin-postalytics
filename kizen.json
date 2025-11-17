@@ -13,5 +13,5 @@
   "base_config": {
     "secrets": ["api_key"]
   },
-  "published": false
+  "published": true
 }
