@@ -1,5 +1,5 @@
 const contact = await this.currentEntity();
-business = await this.currentBusiness();
+business = await this.currentBusiness;
 
 console.log("contact", contact);
 console.log("business", business);
