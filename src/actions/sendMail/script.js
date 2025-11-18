@@ -49,8 +49,8 @@ console.log("Processed Fields:", fields);
 const requiredFields = {
   city: "address_city",
   state: "address_state",
-  street: "address_street",
-  zip: "address_zip",
+  street_address_1: "address_street",
+  zipcode: "address_zip",
   first_name: "first_name",
   last_name: "last_name",
 };
