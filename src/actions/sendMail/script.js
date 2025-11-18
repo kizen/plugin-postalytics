@@ -12,16 +12,24 @@ const requiredFields = {
   last_name: "last_name",
 };
 
-const missingFields = requiredFields.filter(([kizenField, postalyticsField]) => {
-  return !contact[postalyticsField];
+const missingFieldNames = Object.keys(requiredFields).filter((kizenField) => {
+  return !contact[kizenField];
 });
 
-if (missingFields.length > 0) {
-  const missingFieldNames = missingFields.map(([kizenField, postalyticsField]) => kizenField);
+if (missingFieldNames.length > 0) {
   throw new Error(`The following required fields are missing from the contact: ${missingFieldNames.join(", ")}`);
 }
 
-const campaigns = [];
+const campaigns = [
+  {
+    endpoint_id: "123",
+    name: "Drip1",
+  },
+  {
+    endpoint_id: "456",
+    name: "Drip2",
+  },
+];
 
 const result = await this.prompt({
   title: "Send Campaign Mail",
