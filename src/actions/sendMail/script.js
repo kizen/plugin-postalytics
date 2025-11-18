@@ -95,12 +95,11 @@ const result = await this.prompt({
       label: "Campaign",
       key: "campaign_id",
       required: true,
-      fetchMethod: "GET",
+      placeholder: "Select a campaign",
       options: campaigns.map((campaign) => ({
         label: campaign.name,
         value: campaign.id,
       })),
-      placeholder: "Select a campaign",
     },
   ],
 });
