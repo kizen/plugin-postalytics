@@ -93,7 +93,7 @@ const result = await this.prompt({
     {
       type: "dropdown",
       label: "Campaign",
-      key: "campaign_id",
+      id: "campaign_id",
       required: true,
       placeholder: "Select a campaign",
       options: campaigns.map((campaign) => ({
@@ -103,3 +103,10 @@ const result = await this.prompt({
     },
   ],
 });
+
+if (!result.canceled) {
+  const selectedCampaign = campaigns.find((c) => c.id === result.values.campaign_id);
+  this.showToast(
+    `Campaign "${selectedCampaign.name}" has been sent to ${fields.first_name.value} ${fields.last_name.value}.`
+  );
+}
