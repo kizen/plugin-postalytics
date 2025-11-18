@@ -128,11 +128,12 @@ try {
       ])
   );
   console.log("Postalytics Payload:", postalyticsPayload);
+  console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
 
   // Simulate sending mail
   await new Promise((resolve) => setTimeout(resolve, 1000));
   this.showToast(
-    `Campaign "${selectedCampaign.name}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
+    `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
     { variant: "success", autohide: false }
   );
 } catch (error) {
