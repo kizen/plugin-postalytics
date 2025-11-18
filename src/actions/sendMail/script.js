@@ -116,16 +116,35 @@ const fieldMap = {
   phone_home: "phone",
 };
 
+const processField = (field) => {
+  if (Array.isArray(field)) {
+    return field.map((f) => processField(f));
+  } else if (field.field_type == "dynamictags" && Array.isArray(field.value)) {
+    // Custom dynamictags field is array of objects, Native tags field is object with array value
+    return field.value.map((tag) => tag.name || tag.value);
+  } else if (field.field_type == "money") {
+    return field.name.description || field.value;
+  } else if (field.field_type == "rating") {
+    // Rating has number for value and label for name
+    return field.value || field.name;
+  } else {
+    return field.name || field.value || field;
+  }
+};
+
 try {
   const selectedCampaign = result.values.campaign;
   console.log("Selected Campaign:", selectedCampaign);
   const postalyticsPayload = Object.fromEntries(
     Object.entries(fieldMap)
       .filter(([kizenField]) => contactFields[kizenField])
-      .map(([kizenField, postalyticsField]) => [
-        postalyticsField,
-        contactFields[kizenField].value || contactFields[kizenField],
-      ])
+      .map(([kizenField, postalyticsField]) => {
+        const processedField = processField(contactFields[kizenField]);
+        if (Array.isArray(processedField)) {
+          return [postalyticsField, processedField.join(", ")];
+        }
+        return [postalyticsField, processedField];
+      })
   );
   console.log("Postalytics Payload:", postalyticsPayload);
   console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
