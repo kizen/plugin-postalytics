@@ -95,6 +95,8 @@ const result = await this.prompt({
   ],
 });
 
+console.log("Prompt Result:", result);
+
 if (result.canceled) {
   this.showToast("Aborted by user.", { variant: "failure", autohide: true });
   return;
@@ -116,6 +118,7 @@ const fieldMap = {
 
 try {
   const selectedCampaign = campaigns.find((c) => c.endpoint_id === result.values.campaign_id);
+  console.log("Selected Campaign:", selectedCampaign);
   const postalyticsPayload = Object.fromEntries(
     Object.entries(fieldMap)
       .filter(([kizenField]) => contactFields[kizenField])
