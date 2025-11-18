@@ -128,7 +128,8 @@ const processField = (field) => {
     // Rating has number for value and label for name
     return field.value || field.name;
   } else {
-    return field.name || field.value || field;
+    // Don't include if both name and value are empty
+    return field.name || field.value;
   }
 };
 
