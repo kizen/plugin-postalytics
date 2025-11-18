@@ -45,18 +45,9 @@ const fields = await processContactFields(contact, contactObj);
 
 console.log("Processed Fields:", fields);
 
-// Map of required fields: kizen field -> postalytics field
-const requiredFields = {
-  city: "address_city",
-  state: "address_state",
-  street_address_1: "address_street",
-  zipcode: "address_zip",
-  first_name: "first_name",
-  last_name: "last_name",
-};
-
-const missingFieldNames = Object.keys(requiredFields).filter((kizenField) => {
-  return !fields[kizenField];
+const requiredFields = ["city", "state", "street_address_1", "zipcode", "first_name", "last_name"];
+const missingFieldNames = requiredFields.filter((reqField) => {
+  return !fields[reqField];
 });
 
 if (missingFieldNames.length > 0) {
@@ -104,9 +95,37 @@ const result = await this.prompt({
   ],
 });
 
-if (!result.canceled) {
-  const selectedCampaign = campaigns.find((c) => c.id === result.values.campaign_id);
-  this.showToast(
-    `Campaign "${selectedCampaign.name}" has been sent to ${fields.first_name.value} ${fields.last_name.value}.`
-  );
+if (result.canceled) {
+  this.showToast("Aborted by user.", { variant: "failure", autohide: true });
+  return;
 }
+
+// Map of required fields: kizen field -> postalytics field
+const fieldMap = {
+  city: "address_city",
+  state: "address_state",
+  street_address_1: "address_street",
+  street_address_2: "address_street2",
+  zipcode: "address_zip",
+  first_name: "first_name",
+  last_name: "last_name",
+  email: "email_address",
+  phone_mobile: "mobile_phone",
+  phone_home: "phone",
+};
+
+const selectedCampaign = campaigns.find((c) => c.endpoint_id === result.values.campaign_id);
+const postalyticsPayload = Object.fromEntries(
+  Object.entries(fieldMap)
+    .filter(([kizenField]) => fields[kizenField])
+    .map(([kizenField, postalyticsField]) => [postalyticsField, fields[kizenField].value || fields[kizenField]])
+);
+
+console.log("Postalytics Payload:", postalyticsPayload);
+
+// Simulate sending mail
+await new Promise((resolve) => setTimeout(resolve, 1000));
+this.showToast(
+  `Campaign "${selectedCampaign.name}" has been sent to ${fields.first_name.value} ${fields.last_name.value}.`,
+  { variant: "success", autohide: false }
+);
