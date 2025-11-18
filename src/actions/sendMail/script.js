@@ -6,6 +6,45 @@ const contactObj = await this.currentObject();
 console.log("Contact:", contact);
 console.log("Contact Object:", contactObj);
 
+async function processContactFields(contact, obj) {
+  const fields = {};
+  const fieldnames = {};
+
+  // Build field name mapping
+  obj.fields.forEach((field) => {
+    fieldnames[field.id] = field.name;
+    if (field.is_default) {
+      fields[field.name] = {
+        field: field.id,
+        field_display_name: field.display_name,
+        field_type: field.field_type,
+        value: contact[field.name],
+        name: null,
+      };
+    }
+  });
+
+  // Converts multival fields to arrays
+  contact.fields.forEach((fieldval) => {
+    const fieldName = fieldnames[fieldval.field];
+    if (!fieldName) return;
+
+    if (fields[fieldName]) {
+      fields[fieldName] = Array.isArray(fields[fieldName])
+        ? [...fields[fieldName], fieldval]
+        : [fields[fieldName], fieldval];
+    } else {
+      fields[fieldName] = fieldval;
+    }
+  });
+
+  return fields;
+}
+
+const fields = await processContactFields(contact, contactObj);
+
+console.log("Processed Fields:", fields);
+
 // Map of required fields: kizen field -> postalytics field
 const requiredFields = {
   city: "address_city",
@@ -17,7 +56,7 @@ const requiredFields = {
 };
 
 const missingFieldNames = Object.keys(requiredFields).filter((kizenField) => {
-  return !contact[kizenField];
+  return !fields[kizenField];
 });
 
 if (missingFieldNames.length > 0) {
