@@ -41,13 +41,13 @@ async function processContactFields(contact, obj) {
   return fields;
 }
 
-const fields = await processContactFields(contact, contactObj);
+const contactFields = await processContactFields(contact, contactObj);
 
-console.log("Processed Fields:", fields);
+console.log("Processed Fields:", contactFields);
 
 const requiredFields = ["city", "state", "street_address_1", "zipcode", "first_name", "last_name"];
 const missingFieldNames = requiredFields.filter((reqField) => {
-  return !fields[reqField];
+  return !contactFields[reqField];
 });
 
 if (missingFieldNames.length > 0) {
@@ -89,7 +89,7 @@ const result = await this.prompt({
       placeholder: "Select a campaign",
       options: campaigns.map((campaign) => ({
         label: campaign.name,
-        value: campaign.id,
+        value: campaign.endpoint_id,
       })),
     },
   ],
@@ -102,10 +102,10 @@ if (result.canceled) {
 
 // Map of required fields: kizen field -> postalytics field
 const fieldMap = {
-  city: "address_city",
-  state: "address_state",
   street_address_1: "address_street",
   street_address_2: "address_street2",
+  city: "address_city",
+  state: "address_state",
   zipcode: "address_zip",
   first_name: "first_name",
   last_name: "last_name",
@@ -114,18 +114,25 @@ const fieldMap = {
   phone_home: "phone",
 };
 
-const selectedCampaign = campaigns.find((c) => c.endpoint_id === result.values.campaign_id);
-const postalyticsPayload = Object.fromEntries(
-  Object.entries(fieldMap)
-    .filter(([kizenField]) => fields[kizenField])
-    .map(([kizenField, postalyticsField]) => [postalyticsField, fields[kizenField].value || fields[kizenField]])
-);
+try {
+  const selectedCampaign = campaigns.find((c) => c.endpoint_id === result.values.campaign_id);
+  const postalyticsPayload = Object.fromEntries(
+    Object.entries(fieldMap)
+      .filter(([kizenField]) => contactFields[kizenField])
+      .map(([kizenField, postalyticsField]) => [
+        postalyticsField,
+        contactFields[kizenField].value || contactFields[kizenField],
+      ])
+  );
+  console.log("Postalytics Payload:", postalyticsPayload);
 
-console.log("Postalytics Payload:", postalyticsPayload);
-
-// Simulate sending mail
-await new Promise((resolve) => setTimeout(resolve, 1000));
-this.showToast(
-  `Campaign "${selectedCampaign.name}" has been sent to ${fields.first_name.value} ${fields.last_name.value}.`,
-  { variant: "success", autohide: false }
-);
+  // Simulate sending mail
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  this.showToast(
+    `Campaign "${selectedCampaign.name}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
+    { variant: "success", autohide: false }
+  );
+} catch (error) {
+  console.error("Error sending campaign mail:", error);
+  this.showToast(`Failed to send campaign mail: ${error.message}`, { variant: "failure", autohide: false });
+}
