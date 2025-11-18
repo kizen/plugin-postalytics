@@ -1,7 +1,10 @@
 this.preserve = true;
 
 const contact = await this.currentEntity();
+const contactObj = await this.currentObject();
+
 console.log("Contact:", contact);
+console.log("Contact Object:", contactObj);
 
 // Map of required fields: kizen field -> postalytics field
 const requiredFields = {
