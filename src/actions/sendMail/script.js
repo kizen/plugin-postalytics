@@ -132,6 +132,13 @@ const processField = (field) => {
   }
 };
 
+const processedContactFields = Object.keys(contactFields).reduce((acc, key) => {
+  acc[key] = processField(contactFields[key]);
+  return acc;
+}, {});
+
+console.log("Processed Contact Fields for Payload:", processedContactFields);
+
 try {
   const selectedCampaign = result.values.campaign;
   console.log("Selected Campaign:", selectedCampaign);
