@@ -84,7 +84,7 @@ const result = await this.prompt({
     {
       type: "dropdown",
       label: "Campaign",
-      id: "campaign_id",
+      id: "campaign",
       required: true,
       placeholder: "Select a campaign",
       options: campaigns.map((campaign) => ({
@@ -117,7 +117,7 @@ const fieldMap = {
 };
 
 try {
-  const selectedCampaign = campaigns.find((c) => c.endpoint_id === result.values.campaign_id);
+  const selectedCampaign = result.values.campaign;
   console.log("Selected Campaign:", selectedCampaign);
   const postalyticsPayload = Object.fromEntries(
     Object.entries(fieldMap)
