@@ -11,5 +11,23 @@
   "release_notes_directory": "releaseNotes/",
   "config_template": {},
   "base_config": {},
-  "published": true
+  "published": true,
+  "services": [
+    {
+      "service_name": "dev",
+      "display_name": "Postalytics Dev",
+      "required_entitlement": "postalytics_enabled",
+      "auth_type": "basic_auth_token_provided",
+      "base_service_url": "https://api-dev.postalytics.com/api/v1",
+      "integration_secret_api_name": "postalytics__api_key"
+    },
+    {
+      "service_name": "prod",
+      "display_name": "Postalytics Prod",
+      "required_entitlement": "postalytics_enabled",
+      "auth_type": "basic_auth_token_provided",
+      "base_service_url": "https://api.postalytics.com/api/v1",
+      "integration_secret_api_name": "postalytics__api_key"
+    }
+  ]
 }
