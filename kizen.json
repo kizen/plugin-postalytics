@@ -10,7 +10,9 @@
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
   "config_template": {},
-  "base_config": {},
+  "base_config": {
+    "secrets": ["api_key"]
+  },
   "published": true,
   "services": [
     {
