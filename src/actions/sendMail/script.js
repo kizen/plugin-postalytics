@@ -2,7 +2,17 @@ this.preserve = true;
 
 const contact = await this.currentEntity();
 const contactObj = await this.currentObject();
+const business = this.currentBusiness;
 
+const pluginEnv = business?.entitlements?.postalytics_enabled;
+
+if (!pluginEnv) {
+  throw new Error("Postalytics integration is not enabled for this business.");
+} else if (pluginEnv !== "dev" && pluginEnv !== "prod") {
+  throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
+}
+
+console.log("Plugin Environment:", pluginEnv);
 console.log("Contact:", contact);
 console.log("Contact Object:", contactObj);
 
@@ -54,16 +64,13 @@ if (missingFieldNames.length > 0) {
   throw new Error(`The following required fields are missing from the contact: ${missingFieldNames.join(", ")}`);
 }
 
-const campaigns = [
-  {
-    endpoint_id: "123",
-    name: "Drip1",
-  },
-  {
-    endpoint_id: "456",
-    name: "Drip2",
-  },
-];
+const campaignsResponse = await this.get(`/external-integration/proxy/postalytics/${pluginEnv}/campaigns/drips`);
+const campaigns = campaignsResponse.data || [];
+
+if (campaigns.length === 0) {
+  this.showToast("No campaigns found in Postalytics account.", { variant: "failure", autohide: true });
+  return;
+}
 
 const result = await this.prompt({
   title: "Send Campaign Mail",
@@ -158,7 +165,10 @@ try {
   console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
 
   // Simulate sending mail
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await this.post(
+    `/external-integration/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
+    postalyticsPayload
+  );
   this.showToast(
     `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
     { variant: "success", autohide: false }
