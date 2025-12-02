@@ -19,7 +19,7 @@
       "auth_type": "basic_auth_token_provided",
       "display_name": "Postalytics Dev",
       "service_name": "dev",
-      "base_service_url": "https://api-dev.postalytics.com/api/v1",
+      "base_service_url": "https://api-dev.postalytics.com/api/v1/",
       "required_entitlement": "postalytics_enabled",
       "auth_level": "global",
       "auth_credentials": {
@@ -30,7 +30,7 @@
       "auth_type": "basic_auth_token_provided",
       "display_name": "Postalytics Prod",
       "service_name": "prod",
-      "base_service_url": "https://api.postalytics.com/api/v1",
+      "base_service_url": "https://api.postalytics.com/api/v1/",
       "required_entitlement": "postalytics_enabled",
       "auth_level": "global",
       "auth_credentials": {
