@@ -169,12 +169,13 @@ try {
       })
   );
   console.log("Postalytics Payload:", postalyticsPayload);
+  console.log("Stringified Payload:", JSON.stringify(postalyticsPayload, null, 2));
   console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
 
   // Simulate sending mail
   const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
-    postalyticsPayload,
+    JSON.stringify(postalyticsPayload),
     {
       headers: { "Content-Type": "application/json" },
     }
