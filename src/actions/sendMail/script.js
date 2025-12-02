@@ -67,7 +67,8 @@ if (missingFieldNames.length > 0) {
 let campaigns = [];
 try {
   const campaignsResponse = await this.get(`/external-integration/proxy/postalytics/${pluginEnv}/campaigns/drips`);
-  campaigns = campaignsResponse?.data || [];
+  console.log("Campaigns Response:", campaignsResponse);
+  campaigns = campaignsResponse.data;
   console.log("Fetched Campaigns:", campaigns);
 } catch (error) {
   throw new Error("Error fetching campaigns:", error);
