@@ -66,7 +66,7 @@ if (missingFieldNames.length > 0) {
 
 let campaigns = [];
 try {
-  const campaignsResponse = await this.get(`/external-integration/proxy/postalytics/${pluginEnv}/campaigns/drips`);
+  const campaignsResponse = await this.get(`/external-integrations/proxy/postalytics/${pluginEnv}/campaigns/drips`);
   console.log("Campaigns Response:", campaignsResponse);
   campaigns = campaignsResponse.data;
   console.log("Fetched Campaigns:", campaigns);
@@ -173,7 +173,7 @@ try {
 
   // Simulate sending mail
   await this.post(
-    `/external-integration/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
+    `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
     postalyticsPayload
   );
   this.showToast(
