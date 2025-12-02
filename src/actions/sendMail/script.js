@@ -172,10 +172,13 @@ try {
   console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
 
   // Simulate sending mail
-  await this.post(
+  const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
     postalyticsPayload
   );
+  console.log("Send Response:", sendResponse);
+  console.log(`Campaign sent successfully at ${selectedCampaign.send_date}.`);
+
   this.showToast(
     `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
     { variant: "success", autohide: false }
