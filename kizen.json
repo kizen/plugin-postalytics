@@ -1,11 +1,11 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15289-postlytics-send-single-contact-to-selected-campaign-via-contact-page-action"],
-  "release_environments": ["dev"],
+  "release_environments": ["integration"],
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
@@ -16,20 +16,26 @@
   "published": true,
   "services": [
     {
-      "service_name": "dev",
+      "auth_type": "basic_auth_token_provided",
       "display_name": "Postalytics Dev",
-      "required_entitlement": "postalytics_enabled",
-      "auth_type": "no_auth",
+      "service_name": "dev",
       "base_service_url": "https://api-dev.postalytics.com/api/v1",
-      "integration_secret_api_name": "postalytics__api_key"
+      "required_entitlement": "postalytics_enabled",
+      "auth_level": "global",
+      "auth_credentials": {
+        "integration_secret_api_name": "postalytics__api_key"
+      }
     },
     {
-      "service_name": "prod",
+      "auth_type": "basic_auth_token_provided",
       "display_name": "Postalytics Prod",
-      "required_entitlement": "postalytics_enabled",
-      "auth_type": "no_auth",
+      "service_name": "prod",
       "base_service_url": "https://api.postalytics.com/api/v1",
-      "integration_secret_api_name": "postalytics__api_key"
+      "required_entitlement": "postalytics_enabled",
+      "auth_level": "global",
+      "auth_credentials": {
+        "integration_secret_api_name": "postalytics__api_key"
+      }
     }
   ]
 }
