@@ -174,7 +174,10 @@ try {
   // Simulate sending mail
   const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
-    postalyticsPayload
+    postalyticsPayload,
+    {
+      headers: { "Content-Type": "application/json" },
+    }
   );
   console.log("Send Response:", sendResponse);
   console.log(`Campaign sent successfully at ${selectedCampaign.send_date}.`);
