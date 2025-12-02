@@ -64,8 +64,15 @@ if (missingFieldNames.length > 0) {
   throw new Error(`The following required fields are missing from the contact: ${missingFieldNames.join(", ")}`);
 }
 
-const campaignsResponse = await this.get(`/external-integration/proxy/postalytics/${pluginEnv}/campaigns/drips`);
-const campaigns = campaignsResponse.data || [];
+try {
+  const campaignsResponse = await this.get(`/external-integration/proxy/postalytics/${pluginEnv}/campaigns/drips`);
+  const campaigns = campaignsResponse?.data || [];
+  console.log("Fetched Campaigns:", campaigns);
+} catch (error) {
+  console.error("Error fetching campaigns:", error);
+  this.showToast(`Failed to fetch campaigns: ${error.message}`, { variant: "failure", autohide: false });
+  return;
+}
 
 if (campaigns.length === 0) {
   this.showToast("No campaigns found in Postalytics account.", { variant: "failure", autohide: true });
