@@ -68,7 +68,7 @@ let campaigns = [];
 try {
   const campaignsResponse = await this.get(`/external-integrations/proxy/postalytics/${pluginEnv}/campaigns/drips`);
   console.log("Campaigns Response:", campaignsResponse);
-  campaigns = campaignsResponse.data;
+  campaigns = campaignsResponse.drips || [];
   console.log("Fetched Campaigns:", campaigns);
 } catch (error) {
   throw new Error("Error fetching campaigns:", error);
