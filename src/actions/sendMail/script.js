@@ -175,7 +175,15 @@ try {
   // Simulate sending mail
   const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
-    JSON.stringify(postalyticsPayload),
+    {
+      address_street: "20 E. 6th Street",
+      address_city: "Austin",
+      address_state: "TX",
+      address_zip: "90014",
+      first_name: "Bill",
+      last_name: "Smith",
+      email_address: "billsmith@kizen.com",
+    },
     {
       headers: { "Content-Type": "application/json" },
     }
