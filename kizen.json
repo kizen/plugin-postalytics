@@ -1,11 +1,11 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15289-postlytics-send-single-contact-to-selected-campaign-via-contact-page-action"],
-  "release_environments": ["integration"],
+  "release_environments": ["dev"],
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",

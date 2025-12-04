@@ -175,26 +175,21 @@ try {
   // Simulate sending mail
   const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
-    {
-      address_street: "20 E. 6th Street",
-      address_city: "Austin",
-      address_state: "TX",
-      address_zip: "90014",
-      first_name: "Bill",
-      last_name: "Smith",
-      email_address: "billsmith@kizen.com",
-    },
+    postalyticsPayload,
     {
       headers: { "Content-Type": "application/json" },
     }
   );
   console.log("Send Response:", sendResponse);
   console.log(`Campaign sent successfully at ${selectedCampaign.send_date}.`);
-
-  this.showToast(
-    `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
-    { variant: "success", autohide: false }
-  );
+  if (sendResponse?.send_date) {
+    this.showToast(
+      `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
+      { variant: "success", autohide: true }
+    );
+  } else {
+    this.showToast("Campaign failed to send.", { variant: "failure", autohide: true });
+  }
 } catch (error) {
   throw new Error("Error sending campaign mail:", error);
 }
