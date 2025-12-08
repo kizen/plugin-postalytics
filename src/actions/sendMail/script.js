@@ -12,10 +12,6 @@ if (!pluginEnv) {
   throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
 }
 
-console.log("Plugin Environment:", pluginEnv);
-console.log("Contact:", contact);
-console.log("Contact Object:", contactObj);
-
 async function processContactFields(contact, obj) {
   const fields = {};
   const fieldnames = {};
@@ -53,8 +49,6 @@ async function processContactFields(contact, obj) {
 
 const contactFields = await processContactFields(contact, contactObj);
 
-console.log("Processed Fields:", contactFields);
-
 const requiredFields = ["city", "state", "street_address_1", "zipcode", "first_name", "last_name"];
 const missingFieldNames = requiredFields.filter((reqField) => {
   return !contactFields[reqField];
@@ -67,9 +61,7 @@ if (missingFieldNames.length > 0) {
 let campaigns = [];
 try {
   const campaignsResponse = await this.get(`/external-integrations/proxy/postalytics/${pluginEnv}/campaigns/drips`);
-  console.log("Campaigns Response:", campaignsResponse);
   campaigns = campaignsResponse.drips || [];
-  console.log("Fetched Campaigns:", campaigns);
 } catch (error) {
   throw new Error("Error fetching campaigns:", error);
 }
@@ -108,8 +100,6 @@ const result = await this.prompt({
     },
   ],
 });
-
-console.log("Prompt Result:", result);
 
 if (result.canceled) {
   this.showToast("Aborted by user.", { variant: "failure", autohide: true });
@@ -152,11 +142,8 @@ const processedContactFields = Object.keys(contactFields).reduce((acc, key) => {
   return acc;
 }, {});
 
-console.log("Processed Contact Fields for Payload:", processedContactFields);
-
 try {
   const selectedCampaign = result.values.campaign;
-  console.log("Selected Campaign:", selectedCampaign);
   const postalyticsPayload = Object.fromEntries(
     Object.entries(fieldMap)
       .filter(([kizenField]) => contactFields[kizenField])
@@ -168,9 +155,6 @@ try {
         return [postalyticsField, processedField];
       })
   );
-  console.log("Postalytics Payload:", postalyticsPayload);
-  console.log("Stringified Payload:", JSON.stringify(postalyticsPayload, null, 2));
-  console.log(`Sending campaign "${selectedCampaign.label}" to Postalytics API v1/send/${selectedCampaign.value}...`);
 
   // Simulate sending mail
   const sendResponse = await this.post(
@@ -180,8 +164,7 @@ try {
       headers: { "Content-Type": "application/json" },
     }
   );
-  console.log("Send Response:", sendResponse);
-  console.log(`Campaign sent successfully at ${selectedCampaign.send_date}.`);
+
   if (sendResponse?.send_date) {
     this.showToast(
       `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
