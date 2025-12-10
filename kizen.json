@@ -1,7 +1,7 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15289-postlytics-send-single-contact-to-selected-campaign-via-contact-page-action"],

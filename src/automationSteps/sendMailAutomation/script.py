@@ -46,8 +46,10 @@ payload = {
 response = requests.post(
     f"{BASE_URL}/send/{inputs.campaign_id}",
     json=payload,
-    headers={"Content-Type": "application/json"},
-    auth=HTTPBasicAuth(secrets['postalytics__api_key'], ""),
+    headers={
+       "Content-Type": "application/json",
+       "Authorization": f"Basic {secrets['postalytics__api_key']}"
+    },
 )
 
 retry_count = 0
