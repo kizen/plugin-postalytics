@@ -13,7 +13,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "variable",
-      "hint_variable_name": "endpoint",
+      "hint_variable": "endpoint",
       "script_alias": "campaignId"
     },
     {
