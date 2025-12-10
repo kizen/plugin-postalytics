@@ -44,9 +44,10 @@ payload = {
 }
 
 response = requests.post(
-   f"/external-integrations/proxy/postalytics/dev/send/{inputs.campaign_id}",
-   json=payload,
-   headers={"Content-Type": "application/json"},
+    f"{BASE_URL}/send/{inputs.campaign_id}",
+    json=payload,
+    headers={"Content-Type": "application/json"},
+    auth=HTTPBasicAuth(secrets['postalytics__api_key'], ""),
 )
 
 retry_count = 0
@@ -58,10 +59,14 @@ while response.status_code == 429 and retry_count < 3:
   time.sleep(retry_after)
 
   response = requests.post(
-     f"/external-integrations/proxy/postalytics/dev/send/{inputs.campaign_id}",
-     json=payload,
-     headers={"Content-Type": "application/json"},
-)
+      f"{BASE_URL}/v1/send/{inputs.campaign_id}",
+      json=payload,
+      headers={
+         "Content-Type": "application/json",
+         "Authorization": f"Basic {secrets['postalytics__api_key']}"
+      },
+
+  )
 
 if response.status_code != 200:
   # REMOVE SECRETS FROM DEBUG MESSAGE
