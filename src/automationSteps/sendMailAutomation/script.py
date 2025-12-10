@@ -4,7 +4,7 @@ import time
 
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
-required_fields = ["city", "state", "street_address_1", "zipcode", "first_name", "last_name",]
+required_fields = ["input_city", "input_state", "input_street", "input_zip", "input_first_name", "input_last_name",]
 
 missing_field_names = [req_field for req_field in required_fields if not getattr(inputs, req_field)]
 
@@ -24,27 +24,27 @@ state_field = next((d for d in contact_fields if d.get("name") == "state"), None
 
 if state_field and state_field.get("options"):
     state_map = {opt['id']: opt['name'] for opt in state_field['options']}
-    if str(inputs.state) not in state_map:
-        raise ValueError(f"Invalid state value: {inputs.state}")
-    input_state_string = state_map[str(inputs.state)]
+    if str(inputs.input_state) not in state_map:
+        raise ValueError(f"Invalid state value: {inputs.input_state}")
+    input_state_string = state_map[str(inputs.input_state)]
 else:
     raise ValueError("State field options not found.")
 
 payload = {
-    "first_name": inputs.first_name,
-    "last_name": inputs.last_name,
-    "address_street": inputs.street_address_1,
-    "address_street2": inputs.street_address_2,
-    "address_city": inputs.city,
+    "first_name": inputs.input_first_name,
+    "last_name": inputs.input_last_name,
+    "address_street": inputs.input_street1,
+    "address_street2": inputs.input_street2,
+    "address_city": inputs.input_city,
     "address_state": input_state_string,
-    "address_zip": inputs.zipcode,
-    "email_address": inputs.email
+    "address_zip": inputs.input_zip,
+    "email_address": inputs.input_email
     # "mobile_phone": inputs.phone_mobile,
     # "phone": inputs.phone_home,
 }
 
 response = requests.post(
-    f"{BASE_URL}/send/{inputs.endpoint}",
+    f"{BASE_URL}/send/{inputs.campaign_id}",
     json=payload,
     headers={"Content-Type": "application/json"},
     auth=HTTPBasicAuth(secrets['postalytics__api_key'], ""),
@@ -59,7 +59,7 @@ while response.status_code == 429 and retry_count < 3:
   time.sleep(retry_after)
 
   response = requests.post(
-      f"{BASE_URL}/v1/send/{inputs.endpoint}",
+      f"{BASE_URL}/v1/send/{inputs.campaign_id}",
       json=payload,
       headers={"Content-Type": "application/json"},
       auth=HTTPBasicAuth(secrets['postalytics__api_key'], ""),

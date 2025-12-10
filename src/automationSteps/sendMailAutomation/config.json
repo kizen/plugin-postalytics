@@ -44,7 +44,7 @@
       "script_alias": "email"
     },
     {
-      "name": "input_address_street",
+      "name": "input_street1",
       "label": "Address Street",
       "data_type": "string",
       "required": true,
@@ -53,7 +53,7 @@
       "script_alias": "street_address_1"
     },
     {
-      "name": "input_address_street2",
+      "name": "input_street2",
       "label": "Address Street 2",
       "data_type": "string",
       "required": false,
@@ -62,7 +62,7 @@
       "script_alias": "street_address_2"
     },
     {
-      "name": "input_address_city",
+      "name": "input_city",
       "label": "Address City",
       "data_type": "string",
       "required": true,
@@ -71,7 +71,7 @@
       "script_alias": "city"
     },
     {
-      "name": "input_address_state",
+      "name": "input_state",
       "label": "Address State",
       "data_type": "string",
       "required": true,
@@ -80,7 +80,7 @@
       "script_alias": "state"
     },
     {
-      "name": "input_address_zip",
+      "name": "input_zip",
       "label": "Address ZIP",
       "data_type": "string",
       "required": true,
