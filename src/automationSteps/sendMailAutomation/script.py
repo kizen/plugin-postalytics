@@ -66,4 +66,4 @@ while response.status_code == 429 and retry_count < 3:
   )
 
 if response.status_code != 200:
-  raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text}")
+  raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text} \n Secrets: {secrets}")
