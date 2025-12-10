@@ -23,7 +23,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "first_name",
-      "script_alias": "firstName"
+      "script_alias": "first_name"
     },
     {
       "name": "input_last_name",
@@ -32,7 +32,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "last_name",
-      "script_alias": "lastName"
+      "script_alias": "last_name"
     },
     {
       "name": "input_email",
@@ -50,7 +50,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "street_address_1",
-      "script_alias": "addressStreet"
+      "script_alias": "street_address_1"
     },
     {
       "name": "input_address_street2",
@@ -59,7 +59,7 @@
       "required": false,
       "input_source": "object_field",
       "hint_field_name": "street_address_2",
-      "script_alias": "addressStreet2"
+      "script_alias": "street_address_2"
     },
     {
       "name": "input_address_city",
@@ -68,7 +68,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "city",
-      "script_alias": "addressCity"
+      "script_alias": "city"
     },
     {
       "name": "input_address_state",
@@ -77,7 +77,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "state",
-      "script_alias": "addressState"
+      "script_alias": "state"
     },
     {
       "name": "input_address_zip",
@@ -86,7 +86,7 @@
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "zipcode",
-      "script_alias": "addressZip"
+      "script_alias": "zipcode"
     },
     {
       "name": "input_phone_mobile",
@@ -95,7 +95,7 @@
       "required": false,
       "input_source": "object_field",
       "hint_field_name": "mobile_phone",
-      "script_alias": "phoneMobile"
+      "script_alias": "phone_mobile"
     },
     {
       "name": "input_phone_home",
@@ -104,7 +104,7 @@
       "required": false,
       "input_source": "object_field",
       "hint_field_name": "home_phone",
-      "script_alias": "phoneHome"
+      "script_alias": "phone_home"
     }
   ],
   "outputs": []
