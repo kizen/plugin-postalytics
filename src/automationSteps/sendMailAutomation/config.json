@@ -1,0 +1,121 @@
+{
+  "name": "Send Drip Campaign",
+  "plugin_description": "Integrates with Postalytics to send mail campaigns",
+  "action_description": "Send a drip campaign to the target contact",
+  "action_type": "",
+  "runtime": "python-3-13",
+  "secrets": ["postalytics__api_key"],
+  "inputs": [
+    {
+      "name": "campaign_id",
+      "label": "Campaign ID",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "campaignId"
+    },
+    {
+      "name": "first_name",
+      "label": "First Name",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "firstName"
+    },
+    {
+      "name": "last_name",
+      "label": "Last Name",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "lastName"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "email"
+    },
+    {
+      "name": "street",
+      "label": "Street",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "street"
+    },
+    {
+      "name": "street2",
+      "label": "Street 2",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "street2"
+    },
+    {
+      "name": "city",
+      "label": "City",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "city"
+    },
+    {
+      "name": "state",
+      "label": "State",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "state"
+    },
+    {
+      "name": "zip",
+      "label": "ZIP Code",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "zip"
+    },
+    {
+      "name": "phone_mobile",
+      "label": "Mobile Phone",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "phoneMobile"
+    },
+    {
+      "name": "phone_home",
+      "label": "Home Phone",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "",
+      "hint_related_oject_field_name": null,
+      "script_alias": "phoneHome"
+    }
+  ],
+  "outputs": []
+}
