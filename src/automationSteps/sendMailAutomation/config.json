@@ -4,7 +4,7 @@
   "action_description": "Send a drip campaign to the target contact",
   "action_type": "test",
   "runtime": "python-3-13",
-  "secrets": ["postalytics__api_key"],
+  "secrets": ["api_key"],
   "script": "script.js",
   "inputs": [],
   "outputs": []
