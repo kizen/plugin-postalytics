@@ -24,6 +24,87 @@
       "input_source": "object_field",
       "hint_field_name": "first_name",
       "script_alias": "firstName"
+    },
+    {
+      "name": "input_last_name",
+      "label": "Last Name",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "last_name",
+      "script_alias": "lastName"
+    },
+    {
+      "name": "input_email",
+      "label": "Email",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "email",
+      "script_alias": "email"
+    },
+    {
+      "name": "input_address_street",
+      "label": "Address Street",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "address_street",
+      "script_alias": "addressStreet"
+    },
+    {
+      "name": "input_address_street2",
+      "label": "Address Street 2",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "address_street2",
+      "script_alias": "addressStreet2"
+    },
+    {
+      "name": "input_address_city",
+      "label": "Address City",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "address_city",
+      "script_alias": "addressCity"
+    },
+    {
+      "name": "input_address_state",
+      "label": "Address State",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "address_state",
+      "script_alias": "addressState"
+    },
+    {
+      "name": "input_address_zip",
+      "label": "Address ZIP",
+      "data_type": "string",
+      "required": true,
+      "input_source": "object_field",
+      "hint_field_name": "address_zip",
+      "script_alias": "addressZip"
+    },
+    {
+      "name": "input_phone_mobile",
+      "label": "Phone Mobile",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "phone_mobile",
+      "script_alias": "phoneMobile"
+    },
+    {
+      "name": "input_phone_home",
+      "label": "Phone Home",
+      "data_type": "string",
+      "required": false,
+      "input_source": "object_field",
+      "hint_field_name": "phone_home",
+      "script_alias": "phoneHome"
     }
   ],
   "outputs": []
