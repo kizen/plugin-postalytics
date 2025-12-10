@@ -4,7 +4,7 @@ import time
 
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
-required_fields = ["input_city", "input_state", "input_street", "input_zip", "input_first_name", "input_last_name",]
+required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
 
 missing_field_names = [req_field for req_field in required_fields if not getattr(inputs, req_field)]
 
@@ -39,8 +39,8 @@ payload = {
     "address_state": input_state_string,
     "address_zip": inputs.input_zip,
     "email_address": inputs.input_email
-    # "mobile_phone": inputs.phone_mobile,
-    # "phone": inputs.phone_home,
+    # "mobile_phone": inputs.input_phone_mobile,
+    # "phone": inputs.input_phone_home,
 }
 
 response = requests.post(
