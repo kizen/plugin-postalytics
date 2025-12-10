@@ -49,7 +49,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "address_street",
+      "hint_field_name": "street_address_1",
       "script_alias": "addressStreet"
     },
     {
@@ -58,7 +58,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "address_street2",
+      "hint_field_name": "street_address_2",
       "script_alias": "addressStreet2"
     },
     {
@@ -67,7 +67,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "address_city",
+      "hint_field_name": "city",
       "script_alias": "addressCity"
     },
     {
@@ -76,7 +76,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "address_state",
+      "hint_field_name": "state",
       "script_alias": "addressState"
     },
     {
@@ -85,7 +85,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "address_zip",
+      "hint_field_name": "zipcode",
       "script_alias": "addressZip"
     },
     {
@@ -94,7 +94,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "phone_mobile",
+      "hint_field_name": "mobile_phone",
       "script_alias": "phoneMobile"
     },
     {
@@ -103,7 +103,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "phone_home",
+      "hint_field_name": "home_phone",
       "script_alias": "phoneHome"
     }
   ],
