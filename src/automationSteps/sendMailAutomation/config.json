@@ -13,19 +13,16 @@
       "data_type": "string",
       "required": true,
       "input_source": "variable",
-      "hint_field_name": null,
-      "hint_related_oject_field_name": null,
       "hint_variable_name": "Campaign Endpoint ID (eg aBcdEfghiJKlmNOP)",
       "script_alias": "campaignId"
     },
     {
-      "name": "first_name",
+      "name": "contact_first_name",
       "label": "First Name",
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
       "hint_field_name": "First Name",
-      "hint_variable_name": "First Name",
       "script_alias": "firstName"
     }
   ],
