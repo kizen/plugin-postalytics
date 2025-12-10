@@ -4,15 +4,12 @@ import time
 
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
-print("inputs", inputs)
-print("secrets", secrets)
-
 required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
 
 missing_field_names = [req_field for req_field in required_fields if not getattr(inputs, req_field)]
 
 if missing_field_names:
-    raise ValueError(f'Contact missing required fields: {", ".join(missing_field_names)}')
+    raise ValueError(f'Contact missing required fields: {", ".join(missing_field_names)} \n Inputs: {inputs}')
 
 contact_fields = requests.get(
     "https://staging.kizen.com/api/custom-objects/client_client/fields/search",
