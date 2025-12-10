@@ -3,6 +3,7 @@
   "plugin_description": "Integrates with Postalytics to send mail campaigns",
   "action_description": "Send a drip campaign to the target contact",
   "runtime": "python-3-13",
+  "action_type": "do_not_use",
   "secrets": ["api_key"],
   "script": "script.js",
   "inputs": [
