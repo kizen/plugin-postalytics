@@ -66,4 +66,5 @@ while response.status_code == 429 and retry_count < 3:
   )
 
 if response.status_code != 200:
+  # REMOVE SECRETS FROM DEBUG MESSAGE
   raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text} \n Secrets: {secrets}")
