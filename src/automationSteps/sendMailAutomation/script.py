@@ -14,9 +14,9 @@ if missing_field_names:
 contact_fields = requests.get(
     "https://staging.kizen.com/api/custom-objects/client_client/fields/search",
     headers={
-        "x-api-key": "6df39d4c-1d85-4b06-930d-f195d513c641",
-        "x-user-id": "77acf7b1-b7b0-4768-a285-6addf06dc570",
-        "x-business-id": "eedc1c3a-281d-4a26-88ea-a684c85fa612",
+        "x-api-key": secrets["kizen_api_key"],
+        "x-user-id": secrets["kizen_user_id"],
+        "x-business-id": secrets["kizen_business_id"],
     },
 ).json()
 
@@ -71,5 +71,4 @@ while response.status_code == 429 and retry_count < 3:
   )
 
 if response.status_code != 200:
-  # REMOVE SECRETS FROM DEBUG MESSAGE
-  raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text} \n Secrets: {secrets}")
+  raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text}")
