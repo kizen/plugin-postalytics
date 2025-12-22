@@ -4,11 +4,9 @@ const contact = await this.currentEntity();
 const contactObj = await this.currentObject();
 const business = this.currentBusiness;
 
-const pluginEnv = business?.entitlements?.postalytics_enabled;
+let pluginEnv = business?.entitlements?.postalytics_enabled || "prod";
 
-if (!pluginEnv) {
-  throw new Error("Postalytics integration is not enabled for this business.");
-} else if (pluginEnv !== "dev" && pluginEnv !== "prod") {
+if (pluginEnv !== "dev" && pluginEnv !== "prod") {
   throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
 }
 
