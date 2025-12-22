@@ -14,7 +14,7 @@ The main configuration file defines:
 - **Environments**: Supports both dev and prod environments with separate API endpoints
   - Dev: `https://api-dev.postalytics.com/api/v1/`
   - Prod: `https://api.postalytics.com/api/v1/`
-- **Required Entitlement**: `postalytics_enabled` - must be set to either "dev" or "prod"
+- **Optional Entitlement**: `postalytics_enabled` - must be set to either "dev" to use Sandbox, missing entitlement defaults to "prod"
 - **Secret Storage**: API key stored as `postalytics__api_key` in integration secrets
 
 #### 2. Actions
@@ -155,7 +155,7 @@ Where `{env}` is either "dev" or "prod"
 
 ### 1. Business Configuration
 
-- Enable entitlement `postalytics_enabled` with value "dev" or "prod"
+- Enable entitlement `postalytics_enabled` with value "dev" to use Sandbox account
 - Configure API key in integration secrets as `postalytics__api_key`
   1. Open Postalytics account dashboard
   2. Go to Connect->API Key settings
@@ -178,11 +178,10 @@ The contact object (`client_client`) must have these fields:
 
 ### Common Error Scenarios
 
-1. **Missing Entitlement**: Shows error if `postalytics_enabled` is not configured
-2. **Invalid Environment**: Validates environment is "dev" or "prod"
-3. **Missing Required Fields**: Lists all missing required fields
-4. **No Campaigns Available**: Shows toast notification
-5. **API Failures**: Displays error message with details
+1. **Invalid Entitlement**: Shows error if `postalytics_enabled` is not set to "dev" or "prod"
+2. **Missing Required Fields**: Lists all missing required fields
+3. **No Campaigns Available**: Shows toast notification
+4. **API Failures**: Displays error message with details
 
 ### Rate Limiting
 
@@ -195,7 +194,7 @@ The automation script implements exponential backoff:
 
 ### Testing the Plugin
 
-1. Set up a test business with `postalytics_enabled` entitlement
+1. Set up a test business with `postalytics_enabled` entitlement set to "dev"
 2. Configure API key in integration secrets
 3. Create test contact with all required fields
 4. Navigate to contact detail page
@@ -204,9 +203,9 @@ The automation script implements exponential backoff:
 
 ### Common Issues and Solutions
 
-1. **"Postalytics integration is not enabled"**
+1. **"Postalytics entitlement is invalid"**
 
-   - Solution: Add `postalytics_enabled` entitlement to business
+   - Solution: Add `postalytics_enabled: "dev"` to business or remove to set to "prod"
 
 2. **"Required fields are missing"**
 
