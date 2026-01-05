@@ -4,7 +4,7 @@
   "version": "0.0.72",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
-  "release_branches": ["KZN-15289-postlytics-send-single-contact-to-selected-campaign-via-contact-page-action"],
+  "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
   "release_environments": ["dev"],
   "engine": "1.0.0",
   "entry": "src/",
