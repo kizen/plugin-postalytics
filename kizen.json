@@ -1,7 +1,7 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.71",
+  "version": "0.0.72",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15289-postlytics-send-single-contact-to-selected-campaign-via-contact-page-action"],
@@ -9,7 +9,20 @@
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
-  "config_template": {},
+  "config_template": {
+    "field_name_map": {
+      "first_name": "first_name",
+      "last_name": "last_name",
+      "street_address_1": "address_street",
+      "street_address_2": "address_street2",
+      "city": "address_city",
+      "state": "address_state",
+      "zip_code": "address_zip",
+      "email": "email_address",
+      "phone_mobile": "mobile_phone",
+      "phone_home": "phone"
+    }
+  },
   "base_config": {
     "secrets": ["api_key"]
   },
