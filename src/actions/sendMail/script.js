@@ -47,15 +47,6 @@ async function processContactFields(contact, obj) {
 
 const contactFields = await processContactFields(contact, contactObj);
 
-const requiredFields = ["city", "state", "street_address_1", "zipcode", "first_name", "last_name"];
-const missingFieldNames = requiredFields.filter((reqField) => {
-  return !contactFields[reqField];
-});
-
-if (missingFieldNames.length > 0) {
-  throw new Error(`The following required fields are missing from the contact: ${missingFieldNames.join(", ")}`);
-}
-
 let campaigns = [];
 try {
   const campaignsResponse = await this.get(`/external-integrations/proxy/postalytics/${pluginEnv}/campaigns/drips`);
@@ -153,6 +144,13 @@ try {
         return [postalyticsField, processedField];
       })
   );
+
+  const requiredFields = ["address_city", "address_state", "address_street", "address_zip", "first_name", "last_name"];
+  const missingFields = requiredFields.filter((field) => !postalyticsPayload[field]);
+
+  if (missingFields.length > 0) {
+    throw new Error(`The following required fields are missing from the contact: ${missingFields.join(", ")}`);
+  }
 
   // Simulate sending mail
   const sendResponse = await this.post(
