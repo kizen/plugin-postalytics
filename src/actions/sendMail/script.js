@@ -96,7 +96,7 @@ if (result.canceled) {
 }
 
 // Map of required fields: kizen field -> postalytics field
-const fieldMap = this.args?.field_name_map || {
+const fieldMap = {
   street_address_1: "address_street",
   street_address_2: "address_street2",
   city: "address_city",

@@ -9,25 +9,12 @@
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
-  "config_template": {
-    "field_name_map": {
-      "first_name": "first_name",
-      "last_name": "last_name",
-      "street_address_1": "address_street",
-      "street_address_2": "address_street2",
-      "city": "address_city",
-      "state": "address_state",
-      "zip_code": "address_zip",
-      "email": "email_address",
-      "phone_mobile": "mobile_phone",
-      "phone_home": "phone"
-    }
-  },
+  "config_template": {},
   "base_config": {
     "secrets": ["api_key"]
   },
   "setup_assistant": {
-    "actions": ["sendMail"]
+    "actions": ["sendmail"]
   },
   "published": true,
   "services": [
