@@ -8,6 +8,9 @@ let pluginEnv = business?.entitlements?.postalytics_enabled || "prod";
 
 console.log(this.config);
 
+console.log("first name:", this.config['firstName']);
+console.log("first name2", this.config.firstName);
+
 if (pluginEnv !== "dev" && pluginEnv !== "prod") {
   throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
 }
@@ -98,7 +101,7 @@ const result = await this.prompt({
 if (result.canceled) {
   this.showToast("Aborted by user.", { variant: "failure", autohide: true });
   return;
-}
+})
 
 // Map of required fields: kizen field -> postalytics field
 // Uses contactFieldMap to get the actual kizen field names from config setup assistant selection field ids
