@@ -43,11 +43,13 @@
     "fields": [
       {
         "type": "description",
-        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided."
+        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
+        "key": "mapping_description"
       },
       {
         "type": "field",
         "label": "First Name",
+        "key": "first_name",
         "required": true,
         "match_hint": "first_name",
         "object_id": "client_client"
@@ -55,6 +57,7 @@
       {
         "type": "field",
         "label": "Last Name",
+        "key": "last_name",
         "required": true,
         "match_hint": "last_name",
         "object_id": "client_client"
@@ -62,6 +65,7 @@
       {
         "type": "field",
         "label": "Street Address 1",
+        "key": "street_address_1",
         "required": true,
         "match_hint": "street_address_1",
         "object_id": "client_client"
@@ -69,6 +73,7 @@
       {
         "type": "field",
         "label": "Street Address 2",
+        "key": "street_address_2",
         "required": false,
         "match_hint": "street_address_2",
         "object_id": "client_client"
@@ -76,6 +81,7 @@
       {
         "type": "field",
         "label": "City",
+        "key": "city",
         "required": true,
         "match_hint": "city",
         "object_id": "client_client"
@@ -83,6 +89,7 @@
       {
         "type": "field",
         "label": "State",
+        "key": "state",
         "required": true,
         "match_hint": "state",
         "object_id": "client_client"
@@ -90,6 +97,7 @@
       {
         "type": "field",
         "label": "Zip Code",
+        "key": "zip_code",
         "required": true,
         "match_hint": "zipcode",
         "object_id": "client_client"
