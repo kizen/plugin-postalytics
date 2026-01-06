@@ -49,6 +49,8 @@ async function processContactFields(contact, obj) {
 
 const contactFields = await processContactFields(contact, contactObj);
 
+console.log("Contact fields:", contactFields);
+
 let campaigns = [];
 try {
   const campaignsResponse = await this.get(`/external-integrations/proxy/postalytics/${pluginEnv}/campaigns/drips`);
@@ -132,6 +134,8 @@ const processedContactFields = Object.keys(contactFields).reduce((acc, key) => {
   acc[key] = processField(contactFields[key]);
   return acc;
 }, {});
+
+console.log("Processed contact fields:", processedContactFields);
 
 try {
   const selectedCampaign = result.values.campaign;
