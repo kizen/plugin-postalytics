@@ -11,14 +11,14 @@ missing_field_names = [req_field for req_field in required_fields if not getattr
 if missing_field_names:
     raise ValueError(f'Contact missing required fields: {", ".join(missing_field_names)} \n Inputs: {inputs}')
 
-contact_fields = requests.get(
-    "https://staging.kizen.com/api/custom-objects/client_client/fields/search",
-    headers={
-        "x-api-key": secrets["kizen_api_key"],
-        "x-user-id": secrets["kizen_user_id"],
-        "x-business-id": secrets["kizen_business_id"],
-    },
-).json()
+# contact_fields = requests.get(
+#     "https://staging.kizen.com/api/custom-objects/client_client/fields/search",
+#     headers={
+#         "x-api-key": secrets["kizen_api_key"],
+#         "x-user-id": secrets["kizen_user_id"],
+#         "x-business-id": secrets["kizen_business_id"],
+#     },
+# ).json()
 
 state_field = next((d for d in contact_fields if d.get("name") == "state"), None)
 
@@ -30,13 +30,15 @@ if state_field and state_field.get("options"):
 else:
     raise ValueError("State field options not found.")
 
+print(inputs.input_state.get('fieldOption', {}).get('name'))
+
 payload = {
     "first_name": inputs.input_first_name,
     "last_name": inputs.input_last_name,
     "address_street": inputs.input_street1,
     "address_street2": inputs.input_street2,
     "address_city": inputs.input_city,
-    "address_state": input_state_string,
+    "address_state": inputs.input_state['fieldOption']['name'],
     "address_zip": inputs.input_zip,
     "email_address": inputs.input_email
     # "mobile_phone": inputs.input_phone_mobile,
