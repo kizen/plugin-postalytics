@@ -1,7 +1,7 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.81",
+  "version": "0.0.82",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
@@ -55,21 +55,21 @@
       },
       {
         "type": "description",
-        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
+        "content": "\nMap your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
         "key": "fieldsDescription",
         "when": "{{contactObjectId}} != null"
       },
       {
         "type": "description",
-        "content": "Address fields",
+        "content": "\nAddress fields",
         "key": "addressFieldsDescription",
-        "when": "{{contactObjectId['objectName']}} == 'Contacts'"
+        "when": "{{contactObjectId}} != null"
       },
       {
         "type": "container",
         "columns": 2,
         "key": "streetAddressFields",
-        "when": "{{contactObjectId['objectName']}} == 'Contacts'",
+        "when": "{{contactObjectId}} != null",
         "fields": [
           {
             "type": "field",
@@ -93,7 +93,7 @@
         "type": "container",
         "columns": 3,
         "key": "cityStateZipFields",
-        "when": "{{contactObjectId.objectName}} == 'Contacts'",
+        "when": "{{contactObjectId}} != null",
         "fields": [
           {
             "type": "field",
@@ -122,10 +122,16 @@
         ]
       },
       {
+        "type": "description",
+        "content": "\nContact fields",
+        "key": "contactFieldsDescription",
+        "when": "{{contactObjectId}} != null"
+      },
+      {
         "type": "container",
         "columns": 2,
         "key": "nameFields",
-        "when": "{{contactObjectId.objectName}} == 'Contacts'",
+        "when": "{{contactObjectId}} != null",
         "fields": [
           {
             "type": "field",
@@ -146,16 +152,10 @@
         ]
       },
       {
-        "type": "description",
-        "content": "Contact fields",
-        "key": "contactFieldsDescription",
-        "when": "{{contactObjectId}} != null"
-      },
-      {
         "type": "container",
         "columns": 3,
         "key": "contactFields",
-        "when": "{{contactObjectId.objectName}} == 'Contacts'",
+        "when": "{{contactObjectId}} != null",
         "fields": [
           {
             "type": "field",
