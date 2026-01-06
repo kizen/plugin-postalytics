@@ -1,7 +1,7 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.74",
+  "version": "0.0.75",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
@@ -12,9 +12,6 @@
   "config_template": {},
   "base_config": {
     "secrets": ["api_key"]
-  },
-  "setup_assistant": {
-    "actions": ["sendmail"]
   },
   "published": true,
   "services": [
@@ -40,5 +37,63 @@
         "integration_secret_api_name": "postalytics__api_key"
       }
     }
-  ]
+  ],
+  "setup_assistant": {
+    "actions": ["sendmail"],
+    "fields": [
+      {
+        "type": "description",
+        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided."
+      },
+      {
+        "type": "field",
+        "label": "First Name",
+        "required": true,
+        "match_hint": "first_name",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "Last Name",
+        "required": true,
+        "match_hint": "last_name",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "Street Address 1",
+        "required": true,
+        "match_hint": "street_address_1",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "Street Address 2",
+        "required": false,
+        "match_hint": "street_address_2",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "City",
+        "required": true,
+        "match_hint": "city",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "State",
+        "required": true,
+        "match_hint": "state",
+        "object_id": "client_client"
+      },
+      {
+        "type": "field",
+        "label": "Zip Code",
+        "required": true,
+        "match_hint": "zipcode",
+        "object_id": "client_client"
+      }
+    ]
+  }
 }
