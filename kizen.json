@@ -1,10 +1,10 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.93",
+  "version": "0.0.94",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
-  "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
+  "release_branches": ["KZN-15667-postalytics-rework-plugin-code-to-eliminate-api-user-requirement"],
   "release_environments": ["dev"],
   "engine": "1.0.0",
   "entry": "src/",
