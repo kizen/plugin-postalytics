@@ -44,12 +44,13 @@ async function processContactFields(contact, obj) {
     }
   });
 
-  return fields;
+  return { fields, fieldnames };
 }
 
-const contactFields = await processContactFields(contact, contactObj);
+const { fields: contactFields, fieldnames: contactFieldMap } = await processContactFields(contact, contactObj);
 
 console.log("Contact fields:", contactFields);
+console.log("Contact fieldnames map:", contactFieldMap);
 
 let campaigns = [];
 try {
@@ -100,18 +101,21 @@ if (result.canceled) {
 }
 
 // Map of required fields: kizen field -> postalytics field
-const fieldMap = {
-  street_address_1: "address_street",
-  street_address_2: "address_street2",
-  city: "address_city",
-  state: "address_state",
-  zipcode: "address_zip",
-  first_name: "first_name",
-  last_name: "last_name",
-  email: "email_address",
-  phone_mobile: "mobile_phone",
-  phone_home: "phone",
+// Uses contactFieldMap to get the actual kizen field names from config setup assistant selection field ids
+const postalyticsFieldMap = {
+  [contactFieldMap[this.config.firstName] || "street_address_1"]: "address_street",
+  [contactFieldMap[this.config.streetAddress2] || "street_address_2"]: "address_street2",
+  [contactFieldMap[this.config.city] || "city"]: "address_city",
+  [contactFieldMap[this.config.state] || "state"]: "address_state",
+  [contactFieldMap[this.config.zipCode] || "zipcode"]: "address_zip",
+  [contactFieldMap[this.config.firstName] || "first_name"]: "first_name",
+  [contactFieldMap[this.config.lastName] || "last_name"]: "last_name",
+  [contactFieldMap[this.config.email] || "email"]: "email_address",
+  [contactFieldMap[this.config.mobilePhone] || "mobile_phone"]: "mobile_phone",
+  [contactFieldMap[this.config.homePhone] || "home_phone"]: "phone",
 };
+
+console.log("Postalytics field map:", postalyticsFieldMap);
 
 const processField = (field) => {
   if (Array.isArray(field)) {
@@ -140,7 +144,7 @@ console.log("Processed contact fields:", processedContactFields);
 try {
   const selectedCampaign = result.values.campaign;
   const postalyticsPayload = Object.fromEntries(
-    Object.entries(fieldMap)
+    Object.entries(postalyticsFieldMap)
       .filter(([kizenField]) => contactFields[kizenField])
       .map(([kizenField, postalyticsField]) => {
         const processedField = processField(contactFields[kizenField]);
