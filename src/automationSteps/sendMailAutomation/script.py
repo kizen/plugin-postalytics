@@ -20,15 +20,15 @@ if missing_field_names:
 #     },
 # ).json()
 
-state_field = next((d for d in contact_fields if d.get("name") == "state"), None)
+# state_field = next((d for d in contact_fields if d.get("name") == "state"), None)
 
-if state_field and state_field.get("options"):
-    state_map = {opt['id']: opt['name'] for opt in state_field['options']}
-    if str(inputs.input_state) not in state_map:
-        raise ValueError(f"Invalid state value: {inputs.input_state}")
-    input_state_string = state_map[str(inputs.input_state)]
-else:
-    raise ValueError("State field options not found.")
+# if state_field and state_field.get("options"):
+#     state_map = {opt['id']: opt['name'] for opt in state_field['options']}
+#     if str(inputs.input_state) not in state_map:
+#         raise ValueError(f"Invalid state value: {inputs.input_state}")
+#     input_state_string = state_map[str(inputs.input_state)]
+# else:
+#     raise ValueError("State field options not found.")
 
 print(inputs.input_state.get('fieldOption', {}).get('name'))
 
@@ -38,7 +38,7 @@ payload = {
     "address_street": inputs.input_street1,
     "address_street2": inputs.input_street2,
     "address_city": inputs.input_city,
-    "address_state": inputs.input_state['fieldOption']['name'],
+    "address_state": inputs.input_state.get('fieldOption', {}).get('name'),
     "address_zip": inputs.input_zip,
     "email_address": inputs.input_email
     # "mobile_phone": inputs.input_phone_mobile,
