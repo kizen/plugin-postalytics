@@ -151,6 +151,8 @@ try {
       })
   );
 
+  console.log("Postalytics payload:", postalyticsPayload);
+
   const requiredFields = ["address_city", "address_state", "address_street", "address_zip", "first_name", "last_name"];
   const missingFields = requiredFields.filter((field) => !postalyticsPayload[field]);
 
@@ -158,7 +160,6 @@ try {
     throw new Error(`The following required fields are missing from the contact: ${missingFields.join(", ")}`);
   }
 
-  // Simulate sending mail
   const sendResponse = await this.post(
     `/external-integrations/proxy/postalytics/${pluginEnv}/send/${selectedCampaign.value}`,
     postalyticsPayload,
