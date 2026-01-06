@@ -1,7 +1,7 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.78",
+  "version": "0.0.79",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
@@ -43,8 +43,8 @@
     "fields": [
       {
         "type": "description",
-        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
-        "key": "mappingDescription"
+        "content": "Select the Contact object and map the necessary fields for Postalytics mailings.",
+        "key": "contactDescription"
       },
       {
         "type": "custom_object",
@@ -54,60 +54,117 @@
         "match_hint": "client_client"
       },
       {
-        "type": "field",
-        "label": "First Name",
-        "key": "firstName",
-        "required": true,
-        "match_hint": "first_name",
-        "object_id": "{{contactObjectId}}"
+        "type": "description",
+        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
+        "key": "fieldsDescription"
       },
       {
-        "type": "field",
-        "label": "Last Name",
-        "key": "lastName",
-        "required": true,
-        "match_hint": "last_name",
-        "object_id": "{{contactObjectId}}"
+        "type": "container",
+        "columns": 2,
+        "key": "streetAddressFields",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*Street Address 1",
+            "key": "streetAddress1",
+            "required": true,
+            "match_hint": "street_address_1",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Street Address 2",
+            "key": "streetAddress2",
+            "required": false,
+            "match_hint": "street_address_2",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
       },
       {
-        "type": "field",
-        "label": "Street Address 1",
-        "key": "streetAddress1",
-        "required": true,
-        "match_hint": "street_address_1",
-        "object_id": "{{contactObjectId}}"
+        "type": "container",
+        "columns": 3,
+        "key": "cityStateZipFields",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*City",
+            "key": "city",
+            "required": true,
+            "match_hint": "city",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*State",
+            "key": "state",
+            "required": true,
+            "match_hint": "state",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*Zip Code",
+            "key": "zipCode",
+            "required": true,
+            "match_hint": "zipcode",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
       },
       {
-        "type": "field",
-        "label": "Street Address 2",
-        "key": "streetAddress2",
-        "required": false,
-        "match_hint": "street_address_2",
-        "object_id": "{{contactObjectId}}"
+        "type": "container",
+        "columns": 2,
+        "key": "nameFields",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*First Name",
+            "key": "firstName",
+            "required": true,
+            "match_hint": "first_name",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*Last Name",
+            "key": "lastName",
+            "required": true,
+            "match_hint": "last_name",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
       },
       {
-        "type": "field",
-        "label": "City",
-        "key": "city",
-        "required": true,
-        "match_hint": "city",
-        "object_id": "{{contactObjectId}}"
-      },
-      {
-        "type": "field",
-        "label": "State",
-        "key": "state",
-        "required": true,
-        "match_hint": "state",
-        "object_id": "{{contactObjectId}}"
-      },
-      {
-        "type": "field",
-        "label": "Zip Code",
-        "key": "zipCode",
-        "required": true,
-        "match_hint": "zipcode",
-        "object_id": "{{contactObjectId}}"
+        "type": "container",
+        "columns": 3,
+        "key": "contactFields",
+        "fields": [
+          {
+            "type": "field",
+            "label": "Home Phone",
+            "key": "homePhone",
+            "required": false,
+            "match_hint": "home_phone",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Mobile Phone",
+            "key": "mobilePhone",
+            "required": false,
+            "match_hint": "mobile_phone",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Email",
+            "key": "email",
+            "required": false,
+            "match_hint": "email",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
       }
     ]
   }
