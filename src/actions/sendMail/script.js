@@ -1,15 +1,8 @@
-this.preserve = true;
-
 const contact = await this.currentEntity();
 const contactObj = await this.currentObject();
 const business = this.currentBusiness;
 
 let pluginEnv = business?.entitlements?.postalytics_enabled || "prod";
-
-console.log(this.config);
-
-console.log("first name:", this.config["firstName"]["fieldId"]);
-console.log("first name2", this.config.firstName.fieldId);
 
 if (pluginEnv !== "dev" && pluginEnv !== "prod") {
   throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
@@ -51,9 +44,6 @@ async function processContactFields(contact, obj) {
 }
 
 const { fields: contactFields, fieldnames: contactFieldMap } = await processContactFields(contact, contactObj);
-
-console.log("Contact fields:", contactFields);
-console.log("Contact fieldnames map:", contactFieldMap);
 
 let campaigns = [];
 try {
@@ -105,6 +95,7 @@ if (result.canceled) {
 
 // Map of required fields: kizen field -> postalytics field
 // Uses contactFieldMap to get the actual kizen field names from config setup assistant selection field ids
+// Fallback to default field names if no mapping exists
 const postalyticsFieldMap = {
   [contactFieldMap[this.config.streetAddress1.fieldId] || "street_address_1"]: "address_street",
   [contactFieldMap[this.config.streetAddress2.fieldId] || "street_address_2"]: "address_street2",
@@ -117,8 +108,6 @@ const postalyticsFieldMap = {
   [contactFieldMap[this.config.mobilePhone.fieldId] || "mobile_phone"]: "mobile_phone",
   [contactFieldMap[this.config.homePhone.fieldId] || "home_phone"]: "phone",
 };
-
-console.log("Postalytics field map:", postalyticsFieldMap);
 
 const processField = (field) => {
   if (Array.isArray(field)) {
@@ -142,8 +131,6 @@ const processedContactFields = Object.keys(contactFields).reduce((acc, key) => {
   return acc;
 }, {});
 
-console.log("Processed contact fields:", processedContactFields);
-
 try {
   const selectedCampaign = result.values.campaign;
   const postalyticsPayload = Object.fromEntries(
@@ -157,8 +144,6 @@ try {
         return [postalyticsField, processedField];
       })
   );
-
-  console.log("Postalytics payload:", postalyticsPayload);
 
   const requiredFields = ["address_city", "address_state", "address_street", "address_zip", "first_name", "last_name"];
   const missingFields = requiredFields.filter((field) => !postalyticsPayload[field]);
