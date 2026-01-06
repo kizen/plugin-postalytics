@@ -1,7 +1,8 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import time
-print("Inputs:", inputs)
+outputs.log("Inputs:", inputs)
+
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
 required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
