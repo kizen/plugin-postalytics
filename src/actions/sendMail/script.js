@@ -8,7 +8,7 @@ let pluginEnv = business?.entitlements?.postalytics_enabled || "prod";
 
 console.log(this.config);
 
-console.log("first name:", this.config['firstName']);
+console.log("first name:", this.config["firstName"]);
 console.log("first name2", this.config.firstName);
 
 if (pluginEnv !== "dev" && pluginEnv !== "prod") {
@@ -101,21 +101,21 @@ const result = await this.prompt({
 if (result.canceled) {
   this.showToast("Aborted by user.", { variant: "failure", autohide: true });
   return;
-})
+}
 
 // Map of required fields: kizen field -> postalytics field
 // Uses contactFieldMap to get the actual kizen field names from config setup assistant selection field ids
 const postalyticsFieldMap = {
-  [contactFieldMap[this.config.firstName] || "street_address_1"]: "address_street",
-  [contactFieldMap[this.config.streetAddress2] || "street_address_2"]: "address_street2",
-  [contactFieldMap[this.config.city] || "city"]: "address_city",
-  [contactFieldMap[this.config.state] || "state"]: "address_state",
-  [contactFieldMap[this.config.zipCode] || "zipcode"]: "address_zip",
-  [contactFieldMap[this.config.firstName] || "first_name"]: "first_name",
-  [contactFieldMap[this.config.lastName] || "last_name"]: "last_name",
-  [contactFieldMap[this.config.email] || "email"]: "email_address",
-  [contactFieldMap[this.config.mobilePhone] || "mobile_phone"]: "mobile_phone",
-  [contactFieldMap[this.config.homePhone] || "home_phone"]: "phone",
+  [contactFieldMap[this.config["firstName"]] || "street_address_1"]: "address_street",
+  [contactFieldMap[this.config["streetAddress2"]] || "street_address_2"]: "address_street2",
+  [contactFieldMap[this.config["city"]] || "city"]: "address_city",
+  [contactFieldMap[this.config["state"]] || "state"]: "address_state",
+  [contactFieldMap[this.config["zipCode"]] || "zipcode"]: "address_zip",
+  [contactFieldMap[this.config["firstName"]] || "first_name"]: "first_name",
+  [contactFieldMap[this.config["lastName"]] || "last_name"]: "last_name",
+  [contactFieldMap[this.config["email"]] || "email"]: "email_address",
+  [contactFieldMap[this.config["mobilePhone"]] || "mobile_phone"]: "mobile_phone",
+  [contactFieldMap[this.config["homePhone"]] || "home_phone"]: "phone",
 };
 
 console.log("Postalytics field map:", postalyticsFieldMap);
