@@ -52,7 +52,7 @@
         "key": "contactObjectId",
         "required": true,
         "match_hint": "client_client"
-      }
+      },
       {
         "type": "field",
         "label": "First Name",
