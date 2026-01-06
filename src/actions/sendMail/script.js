@@ -6,7 +6,7 @@ const business = this.currentBusiness;
 
 let pluginEnv = business?.entitlements?.postalytics_enabled || "prod";
 
-console.log(this.config["contactObjectId"]);
+console.log(this.config);
 
 if (pluginEnv !== "dev" && pluginEnv !== "prod") {
   throw new Error(`Unknown Postalytics environment: ${pluginEnv}`);
