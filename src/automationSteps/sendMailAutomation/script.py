@@ -31,15 +31,13 @@ if missing_field_names:
 # else:
 #     raise ValueError("State field options not found.")
 
-print(inputs.input_state.get('fieldOption', {}).get('name'))
-
 payload = {
     "first_name": inputs.input_first_name,
     "last_name": inputs.input_last_name,
     "address_street": inputs.input_street1,
     "address_street2": inputs.input_street2,
     "address_city": inputs.input_city,
-    "address_state": inputs.input_state.get('fieldOption', {}).get('name'),
+    "address_state": inputs.input_state,
     "address_zip": inputs.input_zip,
     "email_address": inputs.input_email
     # "mobile_phone": inputs.input_phone_mobile,
