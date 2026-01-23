@@ -2,6 +2,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 import time
 outputs.log(f"Inputs: {inputs}")
+outputs.log(f"State name: {inputs.input_state.name}")
+outputs.log(f"State ID: {inputs.input_state.__dict__}")
 
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
