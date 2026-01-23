@@ -11,25 +11,6 @@ missing_field_names = [req_field for req_field in required_fields if not getattr
 if missing_field_names:
     raise ValueError(f'Contact missing required fields: {", ".join(missing_field_names)} \n Inputs: {inputs}')
 
-# contact_fields = requests.get(
-#     "https://staging.kizen.com/api/custom-objects/client_client/fields/search",
-#     headers={
-#         "x-api-key": secrets["kizen_api_key"],
-#         "x-user-id": secrets["kizen_user_id"],
-#         "x-business-id": secrets["kizen_business_id"],
-#     },
-# ).json()
-
-# state_field = next((d for d in contact_fields if d.get("name") == "state"), None)
-
-# if state_field and state_field.get("options"):
-#     state_map = {opt['id']: opt['name'] for opt in state_field['options']}
-#     if str(inputs.input_state) not in state_map:
-#         raise ValueError(f"Invalid state value: {inputs.input_state}")
-#     input_state_string = state_map[str(inputs.input_state)]
-# else:
-#     raise ValueError("State field options not found.")
-
 payload = {
     "first_name": inputs.input_first_name,
     "last_name": inputs.input_last_name,
