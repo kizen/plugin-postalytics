@@ -1,9 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import time
-outputs.log(f"Inputs: {inputs}")
-outputs.log(f"State name: {inputs.input_state.name}")
-outputs.log(f"State ID: {inputs.input_state.__dict__}")
 
 BASE_URL = "https://api-dev.postalytics.com/api/v1"
 
@@ -39,7 +36,7 @@ payload = {
     "address_street": inputs.input_street1,
     "address_street2": inputs.input_street2,
     "address_city": inputs.input_city,
-    "address_state": inputs.input_state,
+    "address_state": inputs.input_state.name, # need to use .name because it's a dropdown
     "address_zip": inputs.input_zip,
     "email_address": inputs.input_email
     # "mobile_phone": inputs.input_phone_mobile,
