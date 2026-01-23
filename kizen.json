@@ -1,13 +1,181 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.1",
-  "description": "Postalytics app for Kizen",
+  "version": "0.0.99",
+  "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
+  "release_branches": ["KZN-15650-add-field-name-mappings-to-postalytics-config"],
+  "release_environments": ["dev"],
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
   "config_template": {},
-  "base_config": {},
-  "published": false
+  "base_config": {
+    "secrets": ["api_key"]
+  },
+  "published": true,
+  "services": [
+    {
+      "auth_type": "basic_auth_token_provided",
+      "display_name": "Postalytics Dev",
+      "service_name": "dev",
+      "base_service_url": "https://api-dev.postalytics.com/api/v1/",
+      "required_entitlement": "postalytics_enabled",
+      "auth_level": "global",
+      "auth_credentials": {
+        "integration_secret_api_name": "postalytics__api_key"
+      }
+    },
+    {
+      "auth_type": "basic_auth_token_provided",
+      "display_name": "Postalytics Prod",
+      "service_name": "prod",
+      "base_service_url": "https://api.postalytics.com/api/v1/",
+      "required_entitlement": "postalytics_enabled",
+      "auth_level": "global",
+      "auth_credentials": {
+        "integration_secret_api_name": "postalytics__api_key"
+      }
+    }
+  ],
+  "setup_assistant": {
+    "actions": ["sendmail"],
+    "fields": [
+      {
+        "type": "description",
+        "content": "Select the Contact object and map the necessary fields for Postalytics mailings.",
+        "key": "contactDescription"
+      },
+      {
+        "type": "custom_object",
+        "label": "Contact Object",
+        "key": "contactObjectId",
+        "required": true,
+        "match_hint": "client_client"
+      },
+      {
+        "type": "description",
+        "content": "",
+        "key": "spacer"
+      },
+      {
+        "type": "description",
+        "content": "Map your Kizen fields to Postalytics fields for accurate mail delivery. Default Contact mappings are provided.",
+        "key": "fieldsDescription",
+        "when": "{{contactObjectId}} != null"
+      },
+      {
+        "type": "container",
+        "columns": 2,
+        "key": "nameFields",
+        "when": "{{contactObjectId}} != null",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*First Name",
+            "key": "firstName",
+            "required": true,
+            "match_hint": "first_name",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*Last Name",
+            "key": "lastName",
+            "required": true,
+            "match_hint": "last_name",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "columns": 2,
+        "key": "streetAddressFields",
+        "when": "{{contactObjectId}} != null",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*Street Address 1",
+            "key": "streetAddress1",
+            "required": true,
+            "match_hint": "street_address_1",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Street Address 2",
+            "key": "streetAddress2",
+            "required": false,
+            "match_hint": "street_address_2",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "columns": 3,
+        "key": "cityStateZipFields",
+        "when": "{{contactObjectId}} != null",
+        "fields": [
+          {
+            "type": "field",
+            "label": "*City",
+            "key": "city",
+            "required": true,
+            "match_hint": "city",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*State",
+            "key": "state",
+            "required": true,
+            "match_hint": "state",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "*Zip Code",
+            "key": "zipCode",
+            "required": true,
+            "match_hint": "zipcode",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "columns": 3,
+        "key": "contactFields",
+        "when": "{{contactObjectId}} != null",
+        "fields": [
+          {
+            "type": "field",
+            "label": "Home Phone",
+            "key": "homePhone",
+            "required": false,
+            "match_hint": "home_phone",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Mobile Phone",
+            "key": "mobilePhone",
+            "required": false,
+            "match_hint": "mobile_phone",
+            "object_id": "{{contactObjectId}}"
+          },
+          {
+            "type": "field",
+            "label": "Email",
+            "key": "email",
+            "required": false,
+            "match_hint": "email",
+            "object_id": "{{contactObjectId}}"
+          }
+        ]
+      }
+    ]
+  }
 }
