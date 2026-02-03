@@ -1,11 +1,11 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "0.0.104",
+  "version": "0.0.105",
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
-  "release_branches": ["KZN-15667-postalytics-rework-plugin-code-to-eliminate-api-user-requirement"],
-  "release_environments": ["dev"],
+  "release_branches": ["main"],
+  "release_environments": ["prod"],
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
@@ -13,7 +13,7 @@
   "base_config": {
     "secrets": ["api_key"]
   },
-  "published": true,
+  "published": false,
   "services": [
     {
       "auth_type": "basic_auth_token_provided",
