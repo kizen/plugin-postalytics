@@ -13,7 +13,7 @@
   "base_config": {
     "secrets": ["api_key"]
   },
-  "published": false,
+  "published": true,
   "services": [
     {
       "auth_type": "basic_auth_token_provided",
