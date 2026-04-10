@@ -8,16 +8,12 @@
   "script": "script.js",
   "inputs": [
     {
-      "name": "env",
-      "label": "Environment",
-      "data_type": "select",
-      "required": true,
+      "name": "isDevEnv",
+      "label": "Dev Environment",
+      "data_type": "boolean",
+      "required": false,
       "input_source": "variable",
-      "options": [
-        { "label": "Production", "value": "prod" },
-        { "label": "Sandbox", "value": "dev" }
-      ],
-      "script_alias": "env"
+      "script_alias": "isDevEnv"
     },
     {
       "name": "campaign_id",
