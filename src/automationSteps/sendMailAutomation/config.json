@@ -12,7 +12,6 @@
       "label": "Environment",
       "data_type": "select",
       "required": true,
-      "input_source": "static",
       "options": [
         { "label": "Production", "value": "prod" },
         { "label": "Sandbox", "value": "dev" }
