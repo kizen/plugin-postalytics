@@ -12,6 +12,7 @@
       "label": "Environment",
       "data_type": "select",
       "required": true,
+      "input_source": "variable",
       "options": [
         { "label": "Production", "value": "prod" },
         { "label": "Sandbox", "value": "dev" }
