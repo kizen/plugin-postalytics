@@ -5,11 +5,16 @@
   "description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["main"],
-  "release_environments": ["prod", "dev"],
+  "release_environments": ["dev"],
   "engine": "1.0.0",
   "entry": "src/",
   "release_notes_directory": "releaseNotes/",
   "config_template": {},
+  "developer_business_id": {
+    "integration": "725f64e5-4124-46cc-92c4-d16049add76e",
+    "staging": "725f64e5-4124-46cc-92c4-d16049add76e",
+    "fmo": "8d718242-26d2-41dc-a76c-ff0677f6242a"
+  },
   "base_config": {
     "secrets": ["api_key"]
   },
