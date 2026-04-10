@@ -2,7 +2,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 import time
 
-BASE_URL = "https://api-dev.postalytics.com/api/v1/"
+isDevEnv = inputs.get("is_dev_env", False)
+BASE_URL = "https://api-dev.postalytics.com/api/v1/" if isDevEnv else "https://api.postalytics.com/api/v1/"
 
 required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
 
