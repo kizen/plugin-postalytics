@@ -10,12 +10,8 @@
     {
       "name": "is_dev_env",
       "label": "Dev Environment",
-      "data_type": "select",
+      "data_type": "boolean",
       "required": false,
-      "options": [
-        { "label": "Yes", "value": "true" },
-        { "label": "No", "value": "false" }
-      ],
       "input_source": "variable",
       "script_alias": "is_dev_env"
     },
