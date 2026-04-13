@@ -9,7 +9,7 @@
   "inputs": [
     {
       "name": "is_dev_env",
-      "label": "Dev Environment",
+      "label": "Run in Sandbox Environment",
       "data_type": "boolean",
       "required": false,
       "input_source": "variable",
