@@ -2,6 +2,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 import time
 
+outputs.log(f"Received inputs: {inputs}")
+
 isDevEnv = inputs.is_dev_env or False
 BASE_URL = "https://api-dev.postalytics.com/api/v1" if isDevEnv else "https://api.postalytics.com/api/v1"
 
