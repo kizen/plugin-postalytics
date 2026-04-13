@@ -2,9 +2,6 @@ import requests
 from requests.auth import HTTPBasicAuth
 import time
 
-outputs.log(f"Received inputs: {inputs}")
-outputs.log(f"Received secrets: {secrets}")
-
 isDevEnv = inputs.is_dev_env or False
 BASE_URL = "https://api-dev.postalytics.com/api/v1" if isDevEnv else "https://api.postalytics.com/api/v1"
 
@@ -30,14 +27,10 @@ payload = {
 
 for secret_key in secrets.keys():
    if secret_key.split('__')[-1] == 'api_key':
-      outputs.log(f"Found API key in secrets with key: {secret_key}")
+      API_KEY = secrets[secret_key]
       break
 
-if 'postalytics__api_key' in secrets:
-   API_KEY = secrets['postalytics__api_key']
-elif 'postalytics_preview_kzn_16684_fix_postalytics_automation_step_to_check_for_business_entitlement__api_key' in secrets:
-   API_KEY = secrets['postalytics_preview_kzn_16684_fix_postalytics_automation_step_to_check_for_business_entitlement__api_key']
-else:
+if not API_KEY:
    raise ValueError("API key not found in secrets. Please provide a valid API key.")
 
 response = requests.post(
