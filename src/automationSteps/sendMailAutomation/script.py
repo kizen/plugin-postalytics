@@ -25,7 +25,12 @@ payload = {
     # "phone": inputs.input_phone_home,
 }
 
-API_KEY = secrets['postalytics__api_key'] or secrets['postalytics_preview_kzn_16684_fix_postalytics_automation_step_to_check_for_business_entitlement__api_key']
+if 'postalytics__api_key' in secrets:
+   API_KEY = secrets['postalytics__api_key']
+elif 'postalytics_preview_kzn_16684_fix_postalytics_automation_step_to_check_for_business_entitlement__api_key' in secrets:
+   API_KEY = secrets['postalytics_preview_kzn_16684_fix_postalytics_automation_step_to_check_for_business_entitlement__api_key']
+else:
+   raise ValueError("API key not found in secrets. Please provide a valid API key.")
 
 response = requests.post(
     f"{BASE_URL}/send/{inputs.campaign_id}",
