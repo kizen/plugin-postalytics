@@ -22,9 +22,9 @@ payload = {
     "address_city": inputs.input_city,
     "address_state": inputs.input_state.name, # need to use .name because it's a dropdown
     "address_zip": inputs.input_zip,
-    "email_address": inputs.input_email
-    # "mobile_phone": inputs.input_phone_mobile,
-    # "phone": inputs.input_phone_home,
+    "email_address": inputs.input_email,
+    "mobile_phone": inputs.input_phone_mobile,
+    "phone": inputs.input_phone_home,
 }
 
 # dev plugin name depends on branch name, so we need to loop through secrets to find the API key
