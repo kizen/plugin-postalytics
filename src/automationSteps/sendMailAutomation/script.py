@@ -25,10 +25,8 @@ payload = {
     # "phone": inputs.input_phone_home,
 }
 
-for secret_key in secrets.keys():
-   if secret_key.split('__')[-1] == 'api_key':
-      API_KEY = secrets[secret_key]
-      break
+# dev plugin name depends on branch name, so we need to loop through secrets to find the API key
+API_KEY = next((value for key, value in secrets.items() if key.endswith('api_key')), None)
 
 if not API_KEY:
    raise ValueError("API key not found in secrets. Please provide a valid API key.")
