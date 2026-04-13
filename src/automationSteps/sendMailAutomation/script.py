@@ -2,8 +2,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 import time
 
-isDevEnv = inputs.is_dev_env or False
-BASE_URL = "https://api-dev.postalytics.com/api/v1/" if isDevEnv else "https://api.postalytics.com/api/v1/"
+isDevEnv = inputs.is_dev_env == "True" or False
+BASE_URL = "https://api-dev.postalytics.com/api/v1" if isDevEnv else "https://api.postalytics.com/api/v1"
 
 required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
 
@@ -50,7 +50,7 @@ while response.status_code == 429 and retry_count < 3:
   time.sleep(retry_after)
 
   response = requests.post(
-      f"{BASE_URL}/v1/send/{inputs.campaign_id}",
+      f"{BASE_URL}/send/{inputs.campaign_id}",
       json=payload,
       headers={
          "Content-Type": "application/json",
