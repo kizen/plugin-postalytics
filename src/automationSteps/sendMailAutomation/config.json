@@ -5,7 +5,7 @@
   "runtime": "python-3-13",
   "action_type": "do_not_use",
   "secrets": ["api_key"],
-  "script": "script.js",
+  "script": "script.py",
   "inputs": [
     {
       "name": "is_dev_env",
