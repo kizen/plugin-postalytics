@@ -119,7 +119,8 @@
     {
       "name": "send_date",
       "label": "Send Date",
-      "data_type": "string"
+      "data_type": "datetime",
+      "required": false
     }
   ]
 }
