@@ -115,5 +115,11 @@
       "script_alias": "phone_home"
     }
   ],
-  "outputs": []
+  "outputs": [
+    {
+      "name": "send_date",
+      "label": "Send Date",
+      "data_type": "string"
+    }
+  ]
 }

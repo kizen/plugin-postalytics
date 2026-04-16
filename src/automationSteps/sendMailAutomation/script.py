@@ -75,5 +75,7 @@ while response.status_code == 429 and retry_count < 3:
   except requests.exceptions.RequestException as e:
     raise Exception(f"An error occurred while sending data to Postalytics: {str(e)}")
 
-if response.status_code != 200:
+if not response.ok:
   raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text}")
+else:
+  outputs.send_date = response.json().get("send_date")
