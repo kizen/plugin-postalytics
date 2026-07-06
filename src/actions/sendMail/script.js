@@ -167,7 +167,7 @@ try {
 
   if (sendResponse?.send_date) {
     this.showToast(
-      `Campaign "${selectedCampaign.label}" has been sent to ${contactFields.first_name.value} ${contactFields.last_name.value}.`,
+      `Campaign "${selectedCampaign.label}" has been sent to ${postalyticsPayload.first_name} ${postalyticsPayload.last_name}.`,
       { variant: "success", autohide: true }
     );
   } else {
