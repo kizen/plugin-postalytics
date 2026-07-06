@@ -82,43 +82,6 @@ The action performs the following workflow:
    - Includes mapped contact data as JSON payload
    - Shows success/failure toast notification
 
-#### 3. Automation Steps
-
-##### Send Mail Automation (`src/automationSteps/sendMailAutomation/`)
-
-**Purpose**: Enables automated sending of Postalytics campaigns to contacts through automation workflows.
-
-**Implementation** (`script.py`):
-The user must define the `endpoint` variable. Contact fields are prepopulated and able to be overridden.
-
-The automation step performs the following:
-
-1. **Required Field Validation**
-
-   - Validates all required address fields are present in inputs
-   - Required fields: `input_city`, `input_state`, `input_street1`, `input_zip`, `input_first_name`, `input_last_name`
-
-2. **State Field Mapping**
-
-   - Fetches contact field definitions from Kizen API
-   - Maps state field IDs to state names for proper API formatting
-   - Validates state value exists in field options
-
-3. **Payload Construction**
-
-   - Maps input fields to Postalytics API format
-   - Includes optional email field if provided
-
-4. **API Request with Retry Logic**
-   - Sends POST request to `/send/{campaign_id}` endpoint
-   - Implements automatic retry on rate limiting (429 status)
-   - Uses exponential backoff with up to 3 retries
-   - Respects `Retry-After` header when present
-
-**Required Secrets**:
-
-- `postalytics__api_key`: Base64-encoded API key for authentication
-
 ## API Integration
 
 ### Authentication
