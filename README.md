@@ -146,13 +146,6 @@ The contact object (`client_client`) must have these fields:
 3. **No Campaigns Available**: Shows toast notification
 4. **API Failures**: Displays error message with details
 
-### Rate Limiting
-
-The automation script implements exponential backoff:
-
-- Retries up to 3 times on 429 status
-- Uses `Retry-After` header or exponential delay if not available
-
 ## Development Workflow
 
 ### Testing the Plugin
