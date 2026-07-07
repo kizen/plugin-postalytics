@@ -2,8 +2,7 @@ import time
 
 BASE_URL = "/external-integrations/proxy/postalytics"
 
-is_dev_env = inputs.is_dev_env or False
-service_name = "dev" if is_dev_env else "prod"
+service_name = "dev" if inputs.is_dev_env else "prod"
 
 required_fields = ["input_city", "input_state", "input_street1", "input_zip", "input_first_name", "input_last_name",]
 
