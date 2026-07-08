@@ -52,4 +52,5 @@ if not response.ok:
     raise Exception(f"Error sending data to Postalytics: {response.status_code} - {response.text}")
 
 body = response.json().get("body") or {}
-outputs.send_date = body.get("send_date")
+if body.get("send_date") is None:
+    raise Exception("Postalytics failed to receive the request.")
