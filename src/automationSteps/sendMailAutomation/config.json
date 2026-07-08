@@ -3,7 +3,7 @@
   "plugin_description": "Integrates with Postalytics to send mail campaigns",
   "action_description": "Send a drip campaign to the target contact",
   "runtime": "python-3-13",
-  "action_type": "do_not_use",
+  "action_type": "send_mail",
   "secrets": ["api_key"],
   "script": "script.py",
   "inputs": [
@@ -115,12 +115,5 @@
       "script_alias": "phone_home"
     }
   ],
-  "outputs": [
-    {
-      "name": "send_date",
-      "label": "Send Date",
-      "data_type": "datetime",
-      "required": false
-    }
-  ]
+  "outputs": []
 }
