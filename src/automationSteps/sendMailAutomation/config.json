@@ -46,7 +46,7 @@
       "name": "input_email",
       "label": "Email",
       "data_type": "string",
-      "required": true,
+      "required": false,
       "input_source": "object_field",
       "hint_field_name": "email",
       "script_alias": "email"
