@@ -1,8 +1,9 @@
 {
   "name": "Postalytics",
   "api_name": "postalytics",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Send direct mail postcards and letters through Postalytics.",
+  "agentic_description": "Send direct mail postcards and letters through Postalytics.",
   "external_link": "",
   "release_branches": ["main"],
   "release_environments": ["prod", "dev"],
