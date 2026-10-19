@@ -1,9 +1,7 @@
 {
   "name": "Send Drip Campaign",
-  "plugin_description": "Integrates with Postalytics to send mail campaigns",
   "action_description": "Send a drip campaign to the target contact",
   "runtime": "python-3-13",
-  "action_type": "send_mail",
   "secrets": ["api_key"],
   "script": "script.py",
   "inputs": [
@@ -12,8 +10,7 @@
       "label": "Run in Sandbox Environment",
       "data_type": "boolean",
       "required": false,
-      "input_source": "variable",
-      "script_alias": "is_dev_env"
+      "input_source": "variable"
     },
     {
       "name": "campaign_id",
@@ -21,8 +18,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "variable",
-      "hint_field_name": "campaign_endpoint_id",
-      "script_alias": "campaignId"
+      "hint_field_name": "campaign_endpoint_id"
     },
     {
       "name": "input_first_name",
@@ -30,8 +26,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "first_name",
-      "script_alias": "first_name"
+      "hint_field_name": "first_name"
     },
     {
       "name": "input_last_name",
@@ -39,8 +34,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "last_name",
-      "script_alias": "last_name"
+      "hint_field_name": "last_name"
     },
     {
       "name": "input_email",
@@ -48,8 +42,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "email",
-      "script_alias": "email"
+      "hint_field_name": "email"
     },
     {
       "name": "input_street1",
@@ -57,8 +50,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "street_address_1",
-      "script_alias": "street_address_1"
+      "hint_field_name": "street_address_1"
     },
     {
       "name": "input_street2",
@@ -66,8 +58,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "street_address_2",
-      "script_alias": "street_address_2"
+      "hint_field_name": "street_address_2"
     },
     {
       "name": "input_city",
@@ -75,8 +66,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "city",
-      "script_alias": "city"
+      "hint_field_name": "city"
     },
     {
       "name": "input_state",
@@ -84,8 +74,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "state",
-      "script_alias": "state"
+      "hint_field_name": "state"
     },
     {
       "name": "input_zip",
@@ -93,8 +82,7 @@
       "data_type": "string",
       "required": true,
       "input_source": "object_field",
-      "hint_field_name": "zipcode",
-      "script_alias": "zipcode"
+      "hint_field_name": "zipcode"
     },
     {
       "name": "input_phone_mobile",
@@ -102,8 +90,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "mobile_phone",
-      "script_alias": "phone_mobile"
+      "hint_field_name": "mobile_phone"
     },
     {
       "name": "input_phone_home",
@@ -111,8 +98,7 @@
       "data_type": "string",
       "required": false,
       "input_source": "object_field",
-      "hint_field_name": "home_phone",
-      "script_alias": "phone_home"
+      "hint_field_name": "home_phone"
     }
   ],
   "outputs": []
